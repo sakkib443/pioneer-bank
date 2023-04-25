@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pioneer Bank</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="containeer">
+      <div id="login-area">
+        <h1>Welcome To Pioneer Bank</h1>
+        <div class="login">
+          <h4>Login</h4>
+          <input type="text" placeholder="Email or phone" />
+          <br />
+          <br />
+          <input type="password" placeholder="password" />
+          <br />
+          <br />
+          <button id="login">Enter</button>
+        </div>
+      </div>
+
+      <div id="transaction-area" style="display: none;">
+        <div class="transaction-area">
+          <div class="col3 deposite">
+            <h4>Deposite</h4>
+            <h2>$ <span id="currentDeposit">180</span></h2>
+          </div>
+          <div class="col3 withdrow">
+            <h4>Withdrow</h4>
+            <h2>$ <span id="currentWithdraw">125</span></h2>
+          </div>
+          <div class="col3 balance">
+            <h4>Balance</h4>
+            <h2>$ <span id="currentBalance">1240</span></h2>
+          </div>
+        </div>
+        <div class="input-area">
+          <div class="col-2">
+            <h4>Deposite</h4>
+            <input id="depositAmount" type="text" placeholder="$  Amount of Deposite" />
+            <br />
+
+            <button id="addDeposit">Deposite</button>
+          </div>
+          <div class="col-2">
+            <h4>Withdrow</h4>
+            <input id="withdrawAmount" type="text" placeholder="$  Amount of Withdroe" />
+            <br />
+            <button id="addWithdraw">Withdrow</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      //login button handeler
+      const loginBtn = document.getElementById("login");
+      loginBtn.addEventListener("click", function () {
+        const loginArea = document.getElementById("login-area");
+        loginArea.style.display = "none";
+
+        const transactionArea = document.getElementById("transaction-area");
+        transactionArea.style.display = "block";
+      })
+
+      //Deposite button handeler
+
+      
+
+       const depositBtn = document.getElementById("addDeposit");
+       depositBtn.addEventListener("click", function(){
+        const despositAmount = document.getElementById("depositAmount").value;
+        const depositNumber = parseFloat(despositAmount);
+        
+
+      //  const currentDeposit = document.getElementById("currentDeposit").innerText;
+      //  const currentDepositNumber = parseFloat(currentDeposit);
+      //  const totalDeposit = depositNumber+ currentDepositNumber;
+      //  document.getElementById("currentDeposit").innerText= totalDeposit;
+
+      //  const currentBalance = document.getElementById("currentBalance").innerText;
+      //  const currentBalanceNumber = parseFloat(currentBalance);
+      //  const totalCurrentBalance = currentBalanceNumber + depositNumber;
+      //  document.getElementById("currentBalance").innerText = totalCurrentBalance;
+        updateSpanText ("currentDeposit", depositNumber);
+        updateSpanText("currentBalance", depositNumber);
+
+        document.getElementById("depositAmount").value ="";
+        
+         
+      })
+      //Withdrow button handeler
+
+      const withdrawBtn = document.getElementById("addWithdraw");
+      withdrawBtn.addEventListener("click" , function (){
+        const withdrawAmount = document.getElementById("withdrawAmount").value;
+        const withdrowNumber = parseFloat(withdrawAmount);
+
+        updateSpanText ("currentWithdraw",withdrowNumber);
+        updateSpanText ("currentBalance", -1* withdrowNumber);
+
+        document.getElementById("withdrawAmount").value ="";
+
+
+       
+      })
+    
+      
+     
+        
+      
+        
+    
+
+
+       function updateSpanText(id , depositNumber){
+        const current = document.getElementById(id).innerText;
+       const currentNumber = parseFloat(current);
+       const totalAmount = depositNumber + currentNumber;
+       document.getElementById(id).innerText= totalAmount;
+       }
+
+    </script>
+  </body>
+</html>
